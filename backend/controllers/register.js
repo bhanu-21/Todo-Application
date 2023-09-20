@@ -1,8 +1,9 @@
 import { validationResult } from "express-validator";
 import { jsonGenerate } from "../utils/helper.js";
-import { StatusCode } from "../utils/constants.js";
+import { JWT_TOKEN_SECRET_KEY, StatusCode } from "../utils/constants.js";
 import bcrypt from 'bcrypt';
 import user from "../models/user.js";
+import Jwt from 'jsonwebtoken';
 
 const Register = async (req, res) => {
     const errors = validationResult(req);
@@ -33,7 +34,9 @@ const Register = async (req, res) => {
                 name: name,
             })
 
-            return res.json(jsonGenerate(StatusCode.SUCCESS, "Registration Successfull", result));
+            const token = Jwt.sign({ userId: result._id }, JWT_TOKEN_SECRET_KEY);
+
+            return res.json(jsonGenerate(StatusCode.SUCCESS, "Registration Successfull", { userId: result._id, token: token }));
         } catch (error) {
             console.log("................", error);
         }
