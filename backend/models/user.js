@@ -24,7 +24,7 @@ const userSchema = mongoose.Schema({
     },
     todos: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Todo"
+        ref: "Todos"
     }],
     date: {
         type: Date,
