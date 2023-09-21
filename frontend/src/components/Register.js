@@ -3,6 +3,7 @@ import { register } from "../services/api";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from "react-router-dom";
+import Header from "./Header";
 
 function Register() {
     const [form, setForm] = useState({
@@ -53,6 +54,7 @@ function Register() {
 
     return (
         <>
+            <Header />
             <ToastContainer />
 
             <div className="container">
