@@ -3,7 +3,7 @@ import { login } from "../services/api";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Header from "./Header";
+import Header from "../components/Header";
 
 function Login() {
     const [form, setForm] = useState({
