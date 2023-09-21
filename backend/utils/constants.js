@@ -1,4 +1,4 @@
-export const DB_CONNECT = "mongodb+srv://bhanupriya05:Mongodb1605@cluster0.bchapxa.mongodb.net/"
+export const DB_CONNECT = "mongodb+srv://bhanupriya05:Mongodb1605@cluster0.bchapxa.mongodb.net/todo_app"
 
 export const JWT_TOKEN_SECRET_KEY = "abcdefghijklmno";
 
