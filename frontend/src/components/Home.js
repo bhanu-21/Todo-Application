@@ -1,9 +1,21 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Header from './Header';
 import Todo from './Todo';
 import AddTodo from './AddTodo';
+import { getToken } from '../services/api';
+import { useNavigate } from 'react-router-dom';
 
 function Home() {
+    const navigation = useNavigate();
+
+    useEffect(() => {
+        if (!getToken()) {
+            navigation('/login');
+        };
+
+        // eslint-disable-next-line
+    }, []);
+
     return (
         <div>
             <Header />

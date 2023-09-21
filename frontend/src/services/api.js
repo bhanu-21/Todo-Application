@@ -19,7 +19,7 @@ export const createTodoApi = async (data) => {
     });
 }
 
-function getToken() {
+export function getToken() {
     let user = localStorage.getItem('user');
     if (!user) return
     const userObj = JSON.parse(user);
