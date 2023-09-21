@@ -13,8 +13,9 @@ function Login({ user, setUser }) {
     const navigation = useNavigate();
 
     useEffect(() => {
+        const user = localStorage.getItem('user');
         if (user) {
-            navigation("/");
+            return navigation('/');
         }
 
         // eslint-disable-next-line
@@ -52,7 +53,9 @@ function Login({ user, setUser }) {
 
     return (
         <>
-            <ToastContainer /><div className="container">
+            <ToastContainer />
+
+            <div className="container">
                 <div className="row justify-content-center mt-4">
                     <div className="col-lg-5 card border-primary mt-4">
                         <div className="card-body">
@@ -70,7 +73,7 @@ function Login({ user, setUser }) {
                                     name="username"
                                     onChange={handleChange} />
                                 {errors?.username && (
-                                    <small id="emailHelp" className="form-text text-muted">
+                                    <small id="emailHelp" className="form-text text-danger">
                                         {errors.username.msg}
                                     </small>
                                 )}
@@ -89,7 +92,7 @@ function Login({ user, setUser }) {
                                     name="password"
                                     onChange={handleChange} />
                                 {errors?.password && (
-                                    <small id="emailHelp" className="form-text text-muted">
+                                    <small id="emailHelp" className="form-text text-danger">
                                         {errors.password.msg}
                                     </small>
                                 )}
