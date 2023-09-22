@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { CREATE_TODO, LOGIN, REGISTER, TODO_LIST } from './apiConstants';
+import { CREATE_TODO, DELETE_TODO, LOGIN, REGISTER, TODO_LIST } from './apiConstants';
 
 export const login = async (data) => {
     return axios.post(LOGIN, data);
@@ -32,6 +32,17 @@ export const getTodoListApi = async (data) => {
     let token = getToken();
     console.log(token, 'token');
     return axios.get(TODO_LIST, {
+        headers: {
+            auth: token
+        }
+    });
+}
+
+// Delete Todo
+export const deleteTodoApi = async (data) => {
+    let token = getToken();
+    console.log(token, 'token');
+    return axios.post(DELETE_TODO, data, {
         headers: {
             auth: token
         }
