@@ -6,3 +6,4 @@ export const REGISTER = `${API_URL}/api/register`;
 
 // Todos
 export const CREATE_TODO = `${API_URL}/api/createTodo`;
+export const TODO_LIST = `${API_URL}/api/todolists`;

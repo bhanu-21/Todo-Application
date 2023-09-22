@@ -1,11 +1,15 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from './Header';
 import Todo from './Todo';
 import AddTodo from './AddTodo';
-import { getToken } from '../services/api';
+import { getTodoListApi, getToken } from '../services/api';
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Home() {
+    const [list, setList] = useState([]);
+    const [refreshList, setRefreshList] = useState();
     const navigation = useNavigate();
 
     useEffect(() => {
@@ -13,18 +17,27 @@ function Home() {
             navigation('/login');
         };
 
+        fetchTodoList();
+
         // eslint-disable-next-line
-    }, []);
+    }, [refreshList]);
+
+    async function fetchTodoList() {
+        const result = await getTodoListApi();
+        console.log('todoooliissstt....', result);
+        if (result.status === 200 && result.data.status === 200) {
+            setList(result.data.data.todos.reverse());
+        }
+    }
 
     return (
         <div>
             <Header />
+            <ToastContainer />
 
             <div className="container">
                 <div className="row justify-content-md-center mt-4">
-                    <Todo />
-                    <Todo />
-                    <Todo />
+                    {list.map((todo) => <Todo key={todo._id} todo={todo} />)}
                 </div>
             </div>
 
@@ -38,7 +51,7 @@ function Home() {
                 </button>
             </div>
 
-            <AddTodo />
+            <AddTodo setRefreshList={setRefreshList} />
         </div>
     )
 }
