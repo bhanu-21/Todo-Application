@@ -4,19 +4,22 @@ import 'react-toastify/dist/ReactToastify.css';
 import { createTodoApi } from '../services/api';
 
 function AddTodo({ setRefreshList }) {
+    const [todoTitle, setTodoTitle] = useState('');
     const [todoDesc, setTodoDesc] = useState('');
 
     const handleTodoSubmit = async () => {
+        console.log('todossss.....', todoTitle);
         console.log('todossss.....', todoDesc);
-        if (todoDesc === '') {
+        if (todoTitle && todoDesc === '') {
             toast('Todo is required');
             return;
         }
 
-        const result = await createTodoApi({ desc: todoDesc });
+        const result = await createTodoApi({ desc: todoDesc, title: todoTitle });
         if (result.status === 200 && result.data.status === 200) {
             toast('Todo Added');
             setRefreshList(new Date());
+            setTodoTitle('');
             setTodoDesc('');
         } else {
             toast(result.data.message);
@@ -36,7 +39,20 @@ function AddTodo({ setRefreshList }) {
                         </div>
                         <div className="modal-body">
                             <div className="form-group">
-                                <textarea name=""
+                                <textarea
+                                    name=""
+                                    className='form-control'
+                                    rows={1}
+                                    placeholder='Write title...'
+                                    onChange={(e) => { setTodoTitle(e.target.value) }}
+                                ></textarea>
+                            </div>
+                        </div>
+
+                        <div className="modal-body">
+                            <div className="form-group">
+                                <textarea
+                                    name=""
                                     className='form-control'
                                     rows={3}
                                     placeholder='Write todos...'

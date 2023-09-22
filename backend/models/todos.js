@@ -6,6 +6,10 @@ const todoSchema = mongoose.Schema({
         ref: "User",
         required: true
     },
+    title: {
+        type: String,
+        required: true,
+    },
     desc: {
         type: String,
         required: true,
@@ -17,7 +21,11 @@ const todoSchema = mongoose.Schema({
     },
     date: {
         type: Date,
-        default: Date.now()
+        default: Date.now
+    },
+    updateDate: {
+        type: Date,
+        default: Date.now
     }
 });
 

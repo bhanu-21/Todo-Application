@@ -28,7 +28,7 @@ function Home() {
         if (searchText === '') {
             setFilteredList(list);
         } else {
-            const filterlist = list.filter(todo => todo.desc.toLowerCase().includes(searchText.toLowerCase().trim()));
+            const filterlist = list.filter(todo => todo.title.toLowerCase().includes(searchText.toLowerCase().trim()));
             setFilteredList(filterlist);
         }
     }, [list, searchText])

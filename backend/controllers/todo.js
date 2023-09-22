@@ -14,6 +14,7 @@ export const createTodo = async (req, res) => {
     try {
         const result = await todos.create({
             userId: req.userId,
+            title: req.body.title,
             desc: req.body.desc
         })
 

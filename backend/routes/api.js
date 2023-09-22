@@ -16,7 +16,7 @@ apiRoute.post('/register', RegisterSchema, Register);
 apiRoute.post('/login', LoginSchema, Login);
 
 // protected routes
-apiProtected.post("/createTodo", [check("desc", "Todo description is required").exists()], createTodo);
+apiProtected.post("/createTodo", [check("desc", "Todo description is required").exists(), check("title", "Todo title is required").exists()], createTodo);
 apiProtected.get("/todolists", getTodos);
 apiProtected.post("/markTodo", [check("todo_id", "Todo Id is required").exists()], markTodo);
 apiProtected.post("/deleteTodo", [check("todo_id", "Todo Id is required").exists()], deleteTodo);

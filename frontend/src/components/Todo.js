@@ -3,6 +3,7 @@ import moment from 'moment';
 import { deleteTodoApi, markTodoApi } from '../services/api';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { HiTrash, HiOutlinePencilAlt } from 'react-icons/hi';
 
 function Todo({ todo, setRefreshList }) {
     const handleDelete = async () => {
@@ -37,16 +38,24 @@ function Todo({ todo, setRefreshList }) {
                 {todo.isCompleted ? 'Completed' : 'Not Completed'}
             </div>
             <div className="card-body">
-                <h4 className='card-title mb-3' style={{ textDecoration: todo.isCompleted ? 'line-through' : 'none' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', fontSize: '30px' }}>
+                    <h3 className='card-title mb-3' style={{ textDecoration: todo.isCompleted ? 'line-through' : 'none', color: 'black' }}>
+                        {todo.title}
+                    </h3>
+
+                    <HiOutlinePencilAlt />
+                </div>
+
+                <h5 className='card-title mb-3' style={{ textDecoration: todo.isCompleted ? 'line-through' : 'none' }}>
                     {todo.desc}
-                </h4>
+                </h5>
                 <p className='card-text mb-3'>{moment(todo.date).fromNow()}</p>
             </div>
 
             <div className="actionButtons"
                 style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <div className="deleteButton">
-                    <button style={{ background: 'red' }} onClick={handleDelete}>Delete</button>
+                    <HiTrash style={{ fontSize: '30px' }} onClick={handleDelete} />
                 </div>
                 <div className="markTodo">
                     <button onClick={handleMarkTodo}>{todo.isCompleted ? 'Mark Uncomplete' : 'Mark Complete'}</button>

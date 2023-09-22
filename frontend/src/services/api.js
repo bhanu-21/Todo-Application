@@ -28,7 +28,7 @@ export function getToken() {
 }
 
 // Get Todo List
-export const getTodoListApi = async (data) => {
+export const getTodoListApi = async () => {
     let token = getToken();
     console.log(token, 'token');
     return axios.get(TODO_LIST, {
