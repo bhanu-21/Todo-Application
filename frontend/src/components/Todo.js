@@ -50,11 +50,11 @@ function Todo({ todo, setRefreshList }) {
 
             <div className="actionButtons"
                 style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <div className="deleteButton">
-                    <HiTrash style={{ fontSize: '30px' }} onClick={handleDelete} />
-                </div>
+                <button className='btn btn-secondary my-2 my-sm-0' onClick={handleDelete}>
+                    Delete
+                </button>
                 <div className="markTodo">
-                    <button onClick={handleMarkTodo}>{todo.isCompleted ? 'Mark Uncomplete' : 'Mark Complete'}</button>
+                    <button className='btn btn-secondary my-2 my-sm-0' onClick={handleMarkTodo}>{todo.isCompleted ? 'Mark Uncomplete' : 'Mark as Complete'}</button>
                 </div>
             </div>
         </div>
