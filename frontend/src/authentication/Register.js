@@ -29,26 +29,34 @@ function Register() {
     };
 
     const handleSubmit = async () => {
-        const result = await register(form);
-        if (result.status === 200) {
-            if (result.data.status === 201) {
-                setErrors(result.data.data);
-                toast(result.data.message);
-                return
+        try {
+            const result = await register(form);
+            if (result.status === 200) {
+                const { status, message, data } = result.data;
+                if (status === 201) {
+                    setErrors(data);
+                    toast(message);
+                    return;
+                }
+                else if (status === 200) {
+                    localStorage.setItem('user', JSON.stringify(data));
+                    toast(message);
+                    navigation('/login');
+                    return;
+                }
+                else if (status === 202) {
+                    toast(message);
+                    return;
+                } else {
+                    console.error('Unknown response status:', status);
+                }
+            } else {
+                toast('Something went wrong, please try again');
+                console.error('Registration request failed with status:', result.status);
             }
-
-            if (result.data.status === 200) {
-                localStorage.setItem('user', JSON.stringify(result.data.data));
-                navigation('/');
-                return
-            }
-
-            if (result.data.status === 202) {
-                toast(result.data.message);
-                return
-            }
-        } else {
-            toast('Something went wrong, please try again');
+        } catch (error) {
+            console.error('An error occurred during registration:', error);
+            toast('An error occurred during registration. Please try again.');
         }
     }
 

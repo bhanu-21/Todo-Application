@@ -33,7 +33,7 @@ function Todo({ todo, setRefreshList }) {
     }
 
     return (
-        <div className='col-sm-3 mx-3 my-2 alert bg-light mb-3' style={{ maxWidth: "20rem" }}>
+        <div className='col-sm-4 mx-3 my-2 alert bg-light mb-3'>
             <div className="card-header mb-4">
                 {todo.isCompleted ? 'Completed' : 'Not Completed'}
             </div>

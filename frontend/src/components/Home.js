@@ -50,7 +50,10 @@ function Home() {
                 <div className="row justify-content-md-center mt-4">
                     {filteredList.map((todo) => <Todo key={todo._id} todo={todo} setRefreshList={setRefreshList} />)}
 
-                    {filteredList.length === 0 && <div className='notFoundTodos'>No todos found</div>}
+                    {filteredList.length === 0 && <div className='notFoundTodos'
+                        style={{ display: 'flex', justifyContent: 'center', fontSize: '30px' }}>
+                        No todos found
+                    </div>}
                 </div>
             </div>
 
