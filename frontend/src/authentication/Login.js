@@ -82,13 +82,13 @@ function Login() {
                             </div>
 
                             <div className="form-group">
-                                <label htmlFor="exampleInputEmail1" className="form-label mt-4">
+                                <label htmlFor="exampleInputEmail2" className="form-label mt-4">
                                     Password
                                 </label>
                                 <input
                                     type="password"
                                     className="form-control"
-                                    id="exampleInputEmail1"
+                                    id="exampleInputEmail2"
                                     aria-describedby="emailHelp"
                                     placeholder="Enter password"
                                     name="password"

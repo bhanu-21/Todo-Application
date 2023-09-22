@@ -3,7 +3,7 @@ import moment from 'moment';
 import { deleteTodoApi, markTodoApi } from '../services/api';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { HiTrash, HiOutlinePencilAlt } from 'react-icons/hi';
+import { HiTrash } from 'react-icons/hi';
 
 function Todo({ todo, setRefreshList }) {
     const handleDelete = async () => {
@@ -38,13 +38,9 @@ function Todo({ todo, setRefreshList }) {
                 {todo.isCompleted ? 'Completed' : 'Not Completed'}
             </div>
             <div className="card-body">
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', fontSize: '30px' }}>
-                    <h3 className='card-title mb-3' style={{ textDecoration: todo.isCompleted ? 'line-through' : 'none', color: 'black' }}>
-                        {todo.title}
-                    </h3>
-
-                    <HiOutlinePencilAlt />
-                </div>
+                <h3 className='card-title mb-3' style={{ textDecoration: todo.isCompleted ? 'line-through' : 'none', color: 'black' }}>
+                    {todo.title}
+                </h3>
 
                 <h5 className='card-title mb-3' style={{ textDecoration: todo.isCompleted ? 'line-through' : 'none' }}>
                     {todo.desc}
