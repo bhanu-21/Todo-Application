@@ -10,6 +10,8 @@ import 'react-toastify/dist/ReactToastify.css';
 function Home() {
     const [list, setList] = useState([]);
     const [refreshList, setRefreshList] = useState();
+    const [searchText, setSearchText] = useState('');
+    const [filteredList, setFilteredList] = useState([]);
     const navigation = useNavigate();
 
     useEffect(() => {
@@ -22,6 +24,15 @@ function Home() {
         // eslint-disable-next-line
     }, [refreshList]);
 
+    useEffect(() => {
+        if (searchText === '') {
+            setFilteredList(list);
+        } else {
+            const filterlist = list.filter(todo => todo.desc.toLowerCase().includes(searchText.toLowerCase().trim()));
+            setFilteredList(filterlist);
+        }
+    }, [list, searchText])
+
     async function fetchTodoList() {
         const result = await getTodoListApi();
         console.log('todoooliissstt....', result);
@@ -32,12 +43,14 @@ function Home() {
 
     return (
         <div>
-            <Header />
+            <Header searchText={searchText} setSearchText={setSearchText} />
             <ToastContainer />
 
             <div className="container">
                 <div className="row justify-content-md-center mt-4">
-                    {list.map((todo) => <Todo key={todo._id} todo={todo} setRefreshList={setRefreshList} />)}
+                    {filteredList.map((todo) => <Todo key={todo._id} todo={todo} setRefreshList={setRefreshList} />)}
+
+                    {filteredList.length === 0 && <div className='notFoundTodos'>No todos found</div>}
                 </div>
             </div>
 

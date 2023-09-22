@@ -37,7 +37,9 @@ function Todo({ todo, setRefreshList }) {
                 {todo.isCompleted ? 'Completed' : 'Not Completed'}
             </div>
             <div className="card-body">
-                <h4 className='card-title mb-3'>{todo.desc}</h4>
+                <h4 className='card-title mb-3' style={{ textDecoration: todo.isCompleted ? 'line-through' : 'none' }}>
+                    {todo.desc}
+                </h4>
                 <p className='card-text mb-3'>{moment(todo.date).fromNow()}</p>
             </div>
 

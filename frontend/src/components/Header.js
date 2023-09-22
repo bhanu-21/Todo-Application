@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-function Header() {
+function Header({ searchText, setSearchText }) {
   const [user, setUser] = useState(null);
   const navigation = useNavigate();
 
@@ -64,16 +64,21 @@ function Header() {
               </>
             )}
           </ul>
-          <form className="d-flex">
-            <input
-              className="form-control me-sm-2"
-              type="search"
-              placeholder="Search"
-            />
-            <button className="btn btn-secondary my-2 my-sm-0" type="submit">
-              Search
-            </button>
-          </form>
+
+          {user && (
+            <form className="d-flex">
+              <input
+                className="form-control me-sm-2"
+                type="search"
+                placeholder="Search"
+                value={searchText}
+                onChange={(e) => setSearchText(e.target.value)}
+              />
+              <button className="btn btn-secondary my-2 my-sm-0" type="submit">
+                Search
+              </button>
+            </form>
+          )}
         </div>
       </div>
     </nav>
